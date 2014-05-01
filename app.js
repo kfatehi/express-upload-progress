@@ -33,6 +33,7 @@ app.get('/', function(req, res) {
 
 // we need a route that lets us download the stuff
 // but we'll do this after we send mail
+// // we dont need it because we're sending an attachment!
 
 app.post('/', function(req, res) {
   mailFile(req.files.myFile.path);
@@ -61,14 +62,13 @@ var deleteAfterUpload = function(path) {
 
 var mailFile = function(path) {
   mail({
-    from: "Fred Foo * <foo@blurdybloop.com>", // sender address
+    from: "Face Detector <fd@cry.li>", // sender address
     to: [
       "forddavis@gmail.com",
       "keyvanfatehi@gmail.com" // will remove once its working ;)
     ],
-    subject: "Face Detected (test)", // Subject line
+    subject: "Face Detected", // Subject line
     text: "Face detected, see attachments", // plaintext body
-    html: "<b>Hello world *</b>", // html body
     attachments: [{
       fileName: "face.jpeg",
       filePath: path
