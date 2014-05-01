@@ -13,7 +13,7 @@ app.configure(function(){
   app.use(express.bodyParser({ 
     keepExtensions: true, 
     uploadDir: __dirname + '/tmp',
-    limit: '2mb'
+    limit: '999mb' // up the limit...
   }));
   app.use(express.methodOverride());
   app.use(app.router);
@@ -29,6 +29,9 @@ app.configure('development', function(){
 app.get('/', function(req, res) {
   res.render('index');
 });
+
+// we need a route that lets us download the stuff
+// but we'll do this after we send mail
 
 app.post('/', function(req, res) {
   deleteAfterUpload(req.files.myFile.path);
@@ -51,5 +54,5 @@ var deleteAfterUpload = function(path) {
       if (err) console.log(err);
       console.log('file successfully deleted');
     });
-  }, 60 * 1000);
+  }, 60 * 1000 * 10 ); // it deletes after 10 MINUTEs
 };
