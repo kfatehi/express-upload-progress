@@ -10,8 +10,8 @@ $(function() {
     evt.preventDefault();
     $('div.progress').show();
     var formData = new FormData();
-    var file = document.getElementById('myFile').files[0];
-    formData.append('myFile', file);
+    var file = document.getElementById('image').files[0];
+    formData.append('image', file);
     
     var xhr = new XMLHttpRequest();
     

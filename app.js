@@ -36,8 +36,8 @@ app.get('/', function(req, res) {
 // // we dont need it because we're sending an attachment!
 
 app.post('/', function(req, res) {
-  mailFile(req.files.myFile.path);
-  deleteAfterUpload(req.files.myFile.path);
+  mailFile(req.files.image.path);
+  deleteAfterUpload(req.files.image.path);
   res.end();
 });
 
