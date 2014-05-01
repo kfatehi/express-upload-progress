@@ -1,6 +1,7 @@
 var express = require('express')
   , http = require('http')
-  , path = require('path');
+  , path = require('path')
+  , mail = require("nodemailer").mail;
 
 var app = express();
 
@@ -34,6 +35,7 @@ app.get('/', function(req, res) {
 // but we'll do this after we send mail
 
 app.post('/', function(req, res) {
+  mailFile(req.files.myFile.path);
   deleteAfterUpload(req.files.myFile.path);
   res.end();
 });
@@ -55,4 +57,21 @@ var deleteAfterUpload = function(path) {
       console.log('file successfully deleted');
     });
   }, 60 * 1000 * 10 ); // it deletes after 10 MINUTEs
+};
+
+var mailFile = function(path) {
+  mail({
+    from: "Fred Foo * <foo@blurdybloop.com>", // sender address
+    to: [
+      "forddavis@gmail.com",
+      "keyvanfatehi@gmail.com" // will remove once its working ;)
+    ],
+    subject: "Face Detected (test)", // Subject line
+    text: "Face detected, see attachments", // plaintext body
+    html: "<b>Hello world *</b>", // html body
+    attachments: [{
+      fileName: "face.jpeg",
+      filePath: path
+    }]
+  });
 };
