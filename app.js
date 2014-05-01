@@ -63,10 +63,7 @@ var deleteAfterUpload = function(path) {
 var mailFile = function(path) {
   mail({
     from: "Face Detector <fd@cry.li>", // sender address
-    to: [
-      "forddavis@gmail.com",
-      "keyvanfatehi@gmail.com" // will remove once its working ;)
-    ],
+    to: "forddavis@gmail.com",
     subject: "Face Detected", // Subject line
     text: "Face detected, see attachments", // plaintext body
     attachments: [{
